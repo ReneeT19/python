@@ -157,15 +157,6 @@
 # print(names[:])   #will print the copy of the original string
 # print(names)
 
-# list methods
-# numbers = [1,2,3,4,5]
-# numbers.append(6)  # add an element to the end of the list
-# numbers.insert(2,-1)  # type of object is T which means any type # the first parameter is where you want to insert the value
-# numbers.remove(1)
-# print(1 in numbers) # whether a value exists in the list
-# print(len(numbers)) # how many elements are in the list
-# numbers.clear() # remove all
-# print(numbers)
 
 # for loops
 # numbers = [1,2,3,4,5]
@@ -210,11 +201,6 @@
 # print(type(range(5)))  # range is one example of complex types in Python
 # for x in [1, 2, 3, 4, 5]:     # could be list of strings
 #     print(x)
-
-# # tuples - use () - immutable - no append, insert,etc.
-# numbers = (1,2,3)
-# print(numbers)
-# print(numbers.count(3))
 
 
 # Functions
@@ -305,15 +291,262 @@
 
 
 # Fizz Buzz Exercise
-def fizz_buzz(input):
-    if input % 15 == 0:
-        return "Fizz_Buzz"
-    elif input % 5 == 0:
-        return "Buzz"
-    elif input % 3 == 0:
-        return "Fizz"
+# def fizz_buzz(input):
+#     if input % 15 == 0:
+#         return "Fizz_Buzz"
+#     elif input % 5 == 0:
+#         return "Buzz"
+#     elif input % 3 == 0:
+#         return "Fizz"
 
-    return input
+#     return input
 
 
-print(fizz_buzz(15))
+# print(fizz_buzz(15))
+
+
+# LIST
+# numbers = [1,2,3,4,5]
+# numbers.append(6)  # add an element to the end of the list
+# numbers.insert(2,-1)  # type of object is T which means any type # the first parameter is where you want to insert the value
+# numbers.remove(1)  3 use .pop() to remove items by index
+# print(1 in numbers) # whether a value exists in the list
+# print(len(numbers)) # how many elements are in the list
+# del numbers[0:2] # delete a range of elements
+# numbers.clear() # remove all
+# print(numbers)
+
+# letters = ["a", "b", "c"]
+# # letters[0] = "A"  # modify the list
+# # print(letters[0])
+# # print(letters[0:2])
+# # print(letters[::2])  # return every second element
+# print(letters.index("a"))  # to find something
+# print(letters.count("a"))
+
+# # loop over the list
+# # returns a tumple that has index and the value
+# for index, letter in enumerate(letters):
+#     print(index, letter)
+
+
+# matrix = [[0, 1], [2, 3]]
+# print(matrix)
+# zeros = [0] * 5
+# combined = zeros + letters
+# print(combined)
+# # creates a list of numbers from 0 to 20 but not including 20
+# numbers = list(range(20))
+# print(numbers[::2])
+# print(numbers[::-1])  # print in a reverse order
+# print(list("Hello World"))  # print chars
+
+# list unpacking
+# numbers = [1, 2, 3, 4, 5, 5, 5, 5, 7]
+# # first, second, *other = numbers  # pack the rest as other
+# first, *other, last = numbers
+# print(first, last)
+# print(other)
+
+# sort list
+# numbers = [3, 5, 1, 8, 2]
+# numbers.sort()
+# # numbers.sort(reverse=True)  # reverse the order
+# print(sorted(numbers))  # you can reverse the order by using (numbers, reverse)
+# print(numbers)
+# sort tuples
+# from collections import deque
+# items = [
+#     ("Product1", 10),  # a tuple
+#     ("Product2", 9),
+#     ("Product3", 12),
+# ]
+
+
+# def sort_items(item):
+#     return item[1]
+
+
+# you need to have the key word here to call the function
+# items.sort(key=sort_items)
+# use lambda expression: key=lambda parameters:expression  and you can delete the sort_item function
+# items.sort(key=lambda item: item[1])
+# print(items)
+
+# Map function - iterate over iterables - just map prices item[1] - just map item names item[0]
+# products = list(map(lambda item: item[0], items))
+# prices = list(map(lambda item: item[1], items))
+# # equal to prices = [item[1] for item in items] - recommended as it's more readable
+# print(products)
+# print(prices)
+
+
+# # filter function - just like map function that takes two parameters
+# filtered = list(filter(lambda item: item[1] >= 10, items))
+# # equal to filtered = [item for item in items if item[1] >= 10] - recommended as it's more readable
+# print(filtered)
+
+
+# Zip function
+# list1 = [1, 2, 3]
+# list2 = [10, 20, 30]
+
+# # returns a zip object that's iterable and prints this [(1, 10), (2, 20), (3, 30)]
+# print(list(zip(list1, list2)))
+# you can replace list1 with "abc"
+
+
+# STACK
+# # LIFO - LAST IN FIRST OUT
+# browsing_session = []
+# browsing_session.append(1)
+# browsing_session.append(2)
+# browsing_session.append(3)
+# print(browsing_session)
+# # remove the last one from the stack and return it
+# print(browsing_session.pop())
+# if not browsing_session:  # if the stack is empty
+#     print("redirect", browsing_session[-1])
+
+
+# QUEUE
+# FIFO
+# queue = deque([])
+# queue.append(1)
+# queue.append(2)
+# queue.append(3)
+# queue.popleft()  # remove 1
+# print(queue)
+# if not queue:  # check if queue is empty
+#     print("empty")
+
+
+# # tuples - use () - immutable - no append, insert,etc. a read-only list; contain a sequence of object
+# numbers = (1,2,3)
+# print(numbers)
+# print(numbers.count(3))
+
+# point = 1, 2
+# point2 = ()
+# print(type(point))
+# print(type(point2))
+# point3 = (1, 2) * 3
+# print(point3)
+# point4 = tuple([1, 2])  # convert a list to a tuple
+# print(point4)
+# point5 = tuple(["Hi"])
+# print(point5)
+# print(point5[0:1])
+# x, y = point
+# if 10 in point:
+#     print("exists")
+
+
+# Swapping variables
+# x = 10
+# y = 11
+
+# x, y = y, x  # swap in Python
+# print(x, y)
+
+
+# Arrays - large dataset (10,000 or more) - more efficient than list (even though list is used 90% of the cases)
+# from array import array  # import the array module
+
+# search for type code in Python    create an object numbers
+# numbers = array("i", [1, 2, 3])
+# numbers.append(4)
+# print(numbers)
+# the type is "i" integer so you can't change the value to a float, different from list
+
+
+# SET - collection with no duplicates - unordered collection - can't be access using index. use list
+# numbers = [1, 2, 3, 4, 4]
+# first = set(numbers)  # to convert it to set to remove duplicates
+# second = {1, 5}  # create a set for practice
+# second.add(5)
+# second.remove(5)
+# len(second)
+# print(first)
+
+# print(first | second)
+# print(first & second)
+# print(first - second)
+# print(first ^ second)
+
+# if 1 in first:
+#     print("yes")
+
+
+# DICTIONARY - collection of key value pairs like a phone book
+## list(), tuple(), set(), dict()
+# point = {"x": 1, "y": 2}  # use string for the key and integer for the value
+# point = dict(x=1, y=2)    # x=1 is a keyword argument
+# point["x"] = 10  # can't access items using numeric values
+# point["z"] = 20
+# print(point)
+# if "a" in point:
+#     print(point["a"])
+# print(point.get("a", 0))  # if no a, return a 0
+# del point["x"]
+# print(point)
+# # iterate dictionary
+# for key in point:
+#     print(key, point[key])
+# # another way to do it
+# for key, value in point.items():
+#     print(key, value)
+
+# Dictionary comprehension - can be used for set, list, and dictionary, but not tuple
+# a list below using comprehension expression
+# values0 = [x * 2 for x in range(5)]
+# a set below using comprehension expression
+# values = {x * 2 for x in range(5)}
+# print(values)
+# # dictionary using comprehension expression
+# values2 = {x: x * 2 for x in range(5)}
+# print(values2)
+
+
+# Generators - what you get when using comprehension expression for tuples; when you deal with big dataset
+# unlike list that stores values in memory
+# from sys import getsizeof
+# values = (x * 2 for x in range(100000))
+# # if using list, it takes 824464 bytes of memory while generator takes 120
+# print("gen:", getsizeof(values))  # generators have no lens
+
+
+# Unpacking Operator - unpack any iterables and take out individual variables - unique in Python
+# numbers = [1, 2, 3]
+# print(*numbers)
+# # when creating list
+# values = [*range(5), *"Hello"]  # you can unpack a string with the same token
+# print(values)
+
+# first = [1, 2]
+# second = [3]
+# values1 = [*first, "a", *second, *"Hello"]
+# print(values1)
+
+# first1 = {"x": 25}
+# second1 = {"x": 10, "y": 2}
+# combined = {**first1, **second1, "z": 1}
+# print(combined)
+
+# Exercise - a common interview question
+from pprint import pprint   # format the output
+sentence = "This is a common interview question"
+
+char_frequency = {}  # char as the keys, repetition as the value, using dictionary
+for char in sentence:
+    if char in char_frequency:
+        char_frequency[char] += 1
+    else:
+        char_frequency[char] = 1
+pprint(char_frequency, width=1)
+# sort it by the frequency; take out and convert to tuple and put in a list
+char_frequency_sorted = sorted(
+    char_frequency.items(),
+    key=lambda kv: kv[1],
+    reverse=True)  # return key values as tuples, not sorted yet; sort after adding the key lambda function, the 3rd argument reversed it
+print(char_frequency_sorted[0])  # prints the most repetitive character
