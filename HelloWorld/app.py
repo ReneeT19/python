@@ -269,20 +269,51 @@
 # def multiple(x, y):  # only takes two parameters
 # return x * y
 
-def multiple(*numbers):  # takes any number of parameters
-    total = 1
-    for number in numbers:
-        total *= number
-    return total  # the indention is important
+# def multiple(*numbers):  # takes any number of parameters
+#     total = 1
+#     for number in numbers:
+#         total *= number
+#         # the indention is important; indented: result 6; not indented: result 1 (use debugging)
+#     return total
 
 
-print(multiple(2, 3, 4, 5))
+# # debugging: added debugger extension and create json file based on your file type
+# # print(multiple(2, 3, 4, 5))
 
-# dioctionary - another complex variable type
+# print("Start")  # F9 to set a breakpoint; F5 to start debugging; f10 to go through the lines one by one, if it's not shown on the left side, it's not executed; f11
+# print(multiple(1, 2, 3))
+
+# # dioctionary - another complex variable type
+
+# def save_user(**user):  # pass multiple key value pairs or keyword argument functions and Python will package them into a dictionary
+#     print(user["name"])
 
 
-def save_user(**user):  # pass multiple key value pairs or keyword argument functions and Python will package them into a dictionary
-    print(user["name"])
+# save_user(id=1, name="R", age=10)
 
 
-save_user(id=1, name="R", age=10)
+# Scope
+# message = "a"  # global variable; try to avoid using it
+
+
+# def greeting(name):
+#     message = "b"  # local variable
+
+
+# greeting("Renee")
+# print(message)  # will print a
+
+
+# Fizz Buzz Exercise
+def fizz_buzz(input):
+    if input % 15 == 0:
+        return "Fizz_Buzz"
+    elif input % 5 == 0:
+        return "Buzz"
+    elif input % 3 == 0:
+        return "Fizz"
+
+    return input
+
+
+print(fizz_buzz(15))
