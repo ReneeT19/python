@@ -533,20 +533,79 @@
 # combined = {**first1, **second1, "z": 1}
 # print(combined)
 
-# Exercise - a common interview question
-from pprint import pprint   # format the output
-sentence = "This is a common interview question"
+# # Exercise - a common interview question
+# from pprint import pprint   # format the output
+# sentence = "This is a common interview question"
 
-char_frequency = {}  # char as the keys, repetition as the value, using dictionary
-for char in sentence:
-    if char in char_frequency:
-        char_frequency[char] += 1
-    else:
-        char_frequency[char] = 1
-pprint(char_frequency, width=1)
-# sort it by the frequency; take out and convert to tuple and put in a list
-char_frequency_sorted = sorted(
-    char_frequency.items(),
-    key=lambda kv: kv[1],
-    reverse=True)  # return key values as tuples, not sorted yet; sort after adding the key lambda function, the 3rd argument reversed it
-print(char_frequency_sorted[0])  # prints the most repetitive character
+# char_frequency = {}  # char as the keys, repetition as the value, using dictionary
+# for char in sentence:
+#     if char in char_frequency:
+#         char_frequency[char] += 1
+#     else:
+#         char_frequency[char] = 1
+# pprint(char_frequency, width=1)
+# # sort it by the frequency; take out and convert to tuple and put in a list
+# char_frequency_sorted = sorted(
+#     char_frequency.items(),
+#     key=lambda kv: kv[1],
+#     reverse=True)  # return key values as tuples, not sorted yet; sort after adding the key lambda function, the 3rd argument reversed it
+# print(char_frequency_sorted[0])  # prints the most repetitive character
+
+
+# Handle Exceptions
+# try:
+#     file = open("app.py")
+#     age = int(input("Age: "))
+#     xfactor = 10 / age
+# except (ValueError, ZeroDivisionError):  # you can do single error without () or multiple ones within ()
+#     print("You didn't enter a valid age.")
+# else:
+#     print("No exceptions were thrown.")
+# finally:   # it always executes to release external resources
+#     file.close()   # close the file object so other people can use it
+
+# another way is to use with statement
+# try:
+#     # with open("app.py") as file, open("another.txt") as target: to release more than one file
+#     with open("app.py") as file:
+#         print("File opened.")
+#         # if an object has enter and exit methods, we can use it with the with statement and no need for finally clause
+#     age = int(input("Age: "))
+#     xfactor = 10 / age
+# except (ValueError, ZeroDivisionError):  # you can do single error without () or multiple ones within ()
+#     print("You didn't enter a valid age.")
+# else:
+#     print("No exceptions were thrown.")
+
+# raise exception - not recommended
+from timeit import timeit
+# run the entire block
+code1 = """   
+
+def calculate_xfactor(age):
+    if age <= 0:
+        raise ValueError("Age can't be 0 or negative.")
+    return 10 / age  # google python 3 built-in exceptions
+
+
+# after raising the exception, use try block to handle it
+try:
+    calculate_xfactor(-1)
+except ValueError as error:  # give it a name error
+    pass
+"""
+
+code2 = """   
+
+def calculate_xfactor(age):
+    if age <= 0:
+        return None
+    return 10 / age 
+
+xfactor = calculate_xfactor(-1)
+if xfactor == None:
+    pass
+"""
+
+print("first code=", timeit(code1, number=10000))
+print("second code=", timeit(code2, number=10000))  # almost 4 times faster
