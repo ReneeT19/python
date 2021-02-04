@@ -147,25 +147,193 @@
 
 
 # Inheritance
-class Animal:  # parent, base
-    # constructor
-    def __init__(self):
-        self.age = 1
+# class Animal(object):  # parent, base
+#     # object class that is the base object class that other classes can inherit from
+#     # constructor
+#     def __init__(self):
+#         print("Animal constructor")
+#         self.age = 1
 
-    def eat(self):
-        print("eat")
-
-
-class Mammal(Animal):  # child, sub
-    def walk(self):
-        print("walk")
+#     def eat(self):
+#         print("eat")
 
 
-class Fish(Animal):  # fish eats but doesn't walk
-    def swim(self):
-        print("swim")
+# class Mammal(Animal):  # child, sub
+#     def __init__(self):
+#         super().__init__()
+#         print("Mamml constructor")
+#         self.weight = 2  # method overriding; the self.age attribute is not executed in this case; if we want to call the animal constructor we insert super()
+# # you can also call the super after the self.weight to change the order of execution
+
+#     def walk(self):
+#         print("walk")
 
 
-m = Mammal()  # create a Mammal object; it has the age attribute automatically
-m.eat()
-print(m.age)
+# class Fish(Animal):  # fish eats but doesn't walk
+#     def swim(self):
+#         print("swim")
+
+
+# m = Mammal()  # create a Mammal object; it has the age attribute automatically
+# m.eat()
+# print(m.age)
+
+# # object class
+# print(isinstance(m, Mammal))  # true
+# print(isinstance(m, Animal))  # true as well as mammal inherits from animal
+# # returns true because mammal indirectly inherits from the object class
+# print(issubclass(Mammal, object))
+
+# Method overriding
+# a constructor in mammal class that has a different attribute weight
+
+# Multi-level inheritance - limit it to 2 levels cause if you have more than that you are complicating the problem
+# Below is an example of multi-level inheritance which is not recommended
+# class Animal:
+#     def eat(self):
+#         print("eat")
+
+
+# class Bird(Animal):
+#     def fly(self):
+#         print("fly")
+
+
+# class Chicken(Bird):
+
+# # Multiple Inheritance - use with caution
+# class Employee:
+#     def greet(self):
+#         print("Employee greet")
+
+
+# class Person:
+#     def greet(self):
+#         print("Person greet")
+
+
+# class Manager(Employee, Person):  # if you change the order it will execute person first
+#     pass
+
+
+# manager = Manager()
+# manager.greet()  # if employee has greet method it executes that first
+
+# a good example of inheritance - no multi-level or multiple inheritance
+# # Python doesn't have this built in so we customize it
+# from abc import ABC, abstractmethod
+
+
+# class InvalidOpeationError(Exception):
+#     pass
+
+
+# class Stream:
+#     def __init__(self):
+#         self.opened = False
+
+#     def open(self):
+#         if self.opened:
+#             raise InvalidOpeationError("Stream is already open.")
+#         self.opened = True
+
+#     def close(self):
+#         if not self.opened:
+#             raise InvalidOpeationError("Stream is already closed.")
+#         self.opened = False
+
+
+# class FileStream(Stream):
+#     def read(self):
+#         print("Read data from a a file.")
+
+
+# class NetworkStream(Stream):
+#     def read(self):
+#         print("Read data from a a network.")
+
+
+# Polymorphism - many forms; useful for forms that takes different content at runtime like a form taking button, textbox, list, etc.
+
+# from abc import ABC, abstractmethod
+
+
+# class UIControl(ABC):
+#     @abstractmethod
+#     def draw(self):
+#         pass
+
+
+# class TextBox(UIControl):
+#     def draw(self):
+#         print("TextBox")
+
+
+# class DropDownList(UIControl):
+#     def draw(self):
+#         print("DropDownList")
+
+
+# def draw(controls):
+#     for control in controls:  # objects have to be iterable like string, list, etc.
+#         control.draw()  # depending on the object you work with at runtime, this draw method takes different forms
+
+
+# ddl = DropDownList()
+# tb = TextBox()
+# draw([ddl, tb])
+
+# Built-in Method
+
+
+# from collections import namedtuple
+
+
+# class Text(str):  # the built-in str class
+#     def duplicate(self):
+#         return self + self
+
+
+# text = Text("Python")
+# print(text.lower())
+# print(text.duplicate())
+
+
+# class TrackableList(list):  # the built-in list class
+#     def append(self, object):
+#         print("Append called")
+#         super().append(object)
+
+
+# list = TrackableList()
+# list.append("1")
+
+# Data Classes
+
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    # after adding this method it will return true
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.
+
+    p1 = Point(1, 2)
+    p2 = Point(1, 2)
+    # false as they are stored in different locations; look at the id locations below for proof
+    print(p1 == p2)
+    print(id(p1))
+    print(id(p2))
+
+
+# tedious above, look at the code below:
+
+Point = namedtuple("Point", ["x", "y"])
+p1 = Point(x=1, y=2)  # use keyword arguments to make the code easier to read
+print(p1.x)  # the tuple can't be altered; we need to create a new object to alter it p1 = Point(x=2, y=3) for example
+p2 = Point(x=1, y=2)
+print(p1 == ps)
+
+# if you work with only data no methods, use tuple like above
