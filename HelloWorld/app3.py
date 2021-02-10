@@ -184,24 +184,81 @@
 # print(duration)
 
 # work with date time object
-from datetime import datetime, timedelta
-import time
+# from datetime import datetime, timedelta
+# import time
 
-dt1 = datetime(2021, 1, 1) + timedelta(days=1,
-                                       seconds=1_000)  # use key word for clarity
-dt2 = datetime.now()
+# dt1 = datetime(2021, 1, 1) + timedelta(days=1,
+#                                        seconds=1_000)  # use key word for clarity
+# dt2 = datetime.now()
 
-# parse string to datetime object; search python3 strptime
-dt = datetime.strptime("2021/01/01", "%Y/%m/%d")
-dt = datetime.fromtimestamp(time.time())  # convert to a datetime object
+# # parse string to datetime object; search python3 strptime
+# dt = datetime.strptime("2021/01/01", "%Y/%m/%d")
+# dt = datetime.fromtimestamp(time.time())  # convert to a datetime object
 
-print(f"{dt.year}/{dt.month}")
-print(dt.strftime("%Y/%m"))  # convert datetime object to a string
+# print(f"{dt.year}/{dt.month}")
+# print(dt.strftime("%Y/%m"))  # convert datetime object to a string
 
-print(dt2 > dt1)  # you can compare datetime objects as well
+# print(dt2 > dt1)  # you can compare datetime objects as well
 
-duration = dt2 - dt1
-print(duration)
-print("days", duration.days)
-print("seconds", duration.seconds)
-print("total_seconds", duration.total_seconds())
+# duration = dt2 - dt1
+# print(duration)
+# print("days", duration.days)
+# print("seconds", duration.seconds)
+# print("total_seconds", duration.total_seconds())
+
+# Generating random values
+# import random
+# import string
+
+# print(random.random())
+# print(random.randint(1, 10))
+# print(random.choice([1, 2, 3, 4]))
+# print(random.choices([1, 2, 3, 4], k=2))
+
+
+# # print in both lower and upper cases for 26 letters
+# print(string.ascii_letters)
+# print(string.ascii_lowercase)
+# print(string.digits)
+
+# # generate a password from the string
+# # "" is to print it as no array brackets
+# print(",".join(random.choices("abcedfghi", k=4)))
+# print("".join(random.choices(string.ascii_letters + string.digits, k=4)))
+
+# # shuffling an array
+# numbers = [1, 2, 3, 4]
+# random.shuffle(numbers)
+# print(numbers)  # gets different combinations each time
+
+
+# open a browser
+# import webbrowser
+
+# print("Deployment completed")
+# webbrowser.open("http://google.com")
+
+
+# Sending emails
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from pathlib import Path
+import smtplib
+
+
+message = MIMEMultipart()
+message["from"] = "Renee Thomsen"
+message["to"] = "testuser@codewithmosh.com"
+message["subject"] = "This is a test"
+message.attach(MIMEText("Body"))
+message.attach(MIMEImage(Path("renee.png")))
+with smtplib.SMTP(host="smtp.gmail.com", port=587) as smtp:
+    smtp.ehlo()
+    smtp.starttls()
+    smtp.login("testuser@codewithmosh.com", "todayskyisblue")
+    smtp.send_message(message)
+    print("Sent...")
+
+
+# Templates
