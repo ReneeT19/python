@@ -240,27 +240,36 @@
 
 
 # Sending emails
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from email.mime.image import MIMEImage
-from pathlib import Path
-import smtplib
-from string import Template
+# Templates
 
-template = Template(Path("template.html").read_text())
-message = MIMEMultipart()
-message["from"] = "Renee Thomsen"
-message["to"] = "testuser@codewithmosh.com"
-message["subject"] = "This is a test"
-body = template.substitute({"name": "John"}) ## pass keyword arguments
-message.attach(MIMEText(body, "html"))
-message.attach(MIMEImage(Path("renee.png")))
-with smtplib.SMTP(host="smtp.gmail.com", port=587) as smtp:
-    smtp.ehlo()
-    smtp.starttls()
-    smtp.login("testuser@codewithmosh.com", "todayskyisblue")
-    smtp.send_message(message)
-    print("Sent...")
+# from email.mime.multipart import MIMEMultipart
+# from email.mime.text import MIMEText
+# from email.mime.image import MIMEImage
+# from pathlib import Path
+# import smtplib
+# from string import Template
+
+# template = Template(Path("template.html").read_text())
+# message = MIMEMultipart()
+# message["from"] = "Renee Thomsen"
+# message["to"] = "testuser@codewithmosh.com"
+# message["subject"] = "This is a test"
+# body = template.substitute({"name": "John"}) ## pass keyword arguments
+# message.attach(MIMEText(body, "html"))
+# message.attach(MIMEImage(Path("renee.png")))
+# with smtplib.SMTP(host="smtp.gmail.com", port=587) as smtp:
+#     smtp.ehlo()
+#     smtp.starttls()
+#     smtp.login("testuser@codewithmosh.com", "todayskyisblue")
+#     smtp.send_message(message)
+#     print("Sent...")
 
 
-# Template
+# Command line arguments
+import sys
+if len(sys.argv) == 1:
+    print("USAGE: python3 app3.py <password>")
+else:
+    password = sys.argv[1]
+    print("Password", password)
+print(sys.argv)
