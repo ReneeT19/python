@@ -245,13 +245,15 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from pathlib import Path
 import smtplib
+from string import Template
 
-
+template = Template(Path("template.html").read_text())
 message = MIMEMultipart()
 message["from"] = "Renee Thomsen"
 message["to"] = "testuser@codewithmosh.com"
 message["subject"] = "This is a test"
-message.attach(MIMEText("Body"))
+body = template.substitute({"name": "John"}) ## pass keyword arguments
+message.attach(MIMEText(body, "html"))
 message.attach(MIMEImage(Path("renee.png")))
 with smtplib.SMTP(host="smtp.gmail.com", port=587) as smtp:
     smtp.ehlo()
@@ -261,4 +263,4 @@ with smtplib.SMTP(host="smtp.gmail.com", port=587) as smtp:
     print("Sent...")
 
 
-# Templates
+# Template
