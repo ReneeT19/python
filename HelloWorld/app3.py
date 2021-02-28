@@ -266,10 +266,28 @@
 
 
 # Command line arguments
-import sys
-if len(sys.argv) == 1:
-    print("USAGE: python3 app3.py <password>")
-else:
-    password = sys.argv[1]
-    print("Password", password)
-print(sys.argv)
+# import sys
+# if len(sys.argv) == 1:
+#     print("USAGE: python3 app3.py <password>")
+# else:
+#     password = sys.argv[1]
+#     print("Password", password)
+# print(sys.argv)
+
+# running external program
+import subprocess
+
+# completed = subprocess.run(["ls", "-l"],
+#                           capture_output=True,
+#                           text=True)
+completed = subprocess.run(["python3", "other.py"],
+                          capture_output=True,
+                          text=True)
+print("args", completed.args)
+print("returncode", completed.returncode)  # return code 0 means success, 1 means error, do a try except to fix it
+print("stderr", completed.stderr)
+print("stdout", completed.stdout)
+# subprocess.call
+# subprocess.check_call
+# subprocess.check_output
+# subprocess.Popen
